@@ -40,7 +40,7 @@ namespace EarthPornWallpaper
              * it should be in a div that contains a span:
              * <span class="rank">
              */
-            entryLoc = earthpornHtml.IndexOf("<span class=\"rank\">1");
+            entryLoc = earthpornHtml.IndexOf("<span class=\"rank\">5");
             /* look for the start of the a tag that contains
              * the link to the image:
              * <a class="thumbnail may-blank " href="IMAGEURL
@@ -52,12 +52,12 @@ namespace EarthPornWallpaper
             //break the url out of the entry
             imageLoc = entry.IndexOf("href") + 6;
             URL = entry.Substring(imageLoc);
-            URL = "https://farm8.staticflickr.com/7520/15732565938_3618efdc32_k.jpg";
+            //URL = "https://farm8.staticflickr.com/7520/15732565938_3618efdc32_k.jpg";
             Console.WriteLine("Image downloaded from: " + URL);
 
             try
             {
-                SetWallpaper(DownloadImage("URL"));
+                SetWallpaper(DownloadImage(URL));
             }
             catch (WebException e)
             {
