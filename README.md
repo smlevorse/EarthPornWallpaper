@@ -2,7 +2,7 @@ EarthPornWallpaper
 ==================
 This is a program that will download the top rated post on reddit.com/r/earthporn and set it to your desktop backround.
 
-<h2>Progress(Updated 12/1/14):</h2>
+<h2>Progress(Updated 12/2/14):</h2>
 The program now works so that if you run it, it downloads the 5th post(I set it to that because while I was testing, posts 1-4 were not as pleasing to me) and sets it to your background. 
 
 <h2>Goals:</h2>
@@ -14,7 +14,7 @@ Get it working:
 Check input:
 <ul>
     <li>There are several types of posts to r/earthporn, some links head directly to the image, some link to imgur, others link to flickr lightbox, etc. </li>
-    <li>Potential issues with file formats</li>
+    <li>̶P̶o̶t̶e̶n̶t̶i̶a̶l̶ ̶i̶s̶s̶u̶e̶s̶ ̶w̶i̶t̶h̶ ̶f̶i̶l̶e̶ ̶f̶o̶r̶m̶a̶t̶s̶</li>
     <li>Rerouting to the next available picture if all else fails</li>
     <li>Avoid panoramas/take into account aspect ratios</li>
 </ul>
@@ -26,7 +26,7 @@ Customizability:
 Usability:
 <ul>
     <li>How to have different pictures when you have multiple monitors
-      <ul><li>Maybe make multiple monitors work with panoramas</li></ul></li>
+      <ul><li>̶M̶a̶y̶b̶e̶ ̶m̶a̶k̶e̶ ̶m̶u̶l̶t̶i̶p̶l̶e̶ ̶m̶o̶n̶i̶t̶o̶r̶s̶ ̶w̶o̶r̶k̶ ̶w̶i̶t̶h̶ ̶p̶a̶n̶o̶r̶a̶m̶a̶s̶ Apparently this is automatic</li></ul></li>
     <li>User interface</li>
     <li>Download more than one image for use offline</li>
     <li>Be able to download the image for personal use</li>
