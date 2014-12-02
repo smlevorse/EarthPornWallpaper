@@ -40,7 +40,7 @@ namespace EarthPornWallpaper
              * it should be in a div that contains a span:
              * <span class="rank">
              */
-            entryLoc = earthpornHtml.IndexOf("<span class=\"rank\">5");
+            entryLoc = earthpornHtml.IndexOf("<span class=\"rank\">1");
             /* look for the start of the a tag that contains
              * the link to the image:
              * <a class="thumbnail may-blank " href="IMAGEURL
@@ -52,9 +52,10 @@ namespace EarthPornWallpaper
             //break the url out of the entry
             imageLoc = entry.IndexOf("href") + 6;
             URL = entry.Substring(imageLoc);
-            //URL = "https://farm8.staticflickr.com/7520/15732565938_3618efdc32_k.jpg";
+
             Console.WriteLine("Image downloaded from: " + URL);
 
+            //try to download
             try
             {
                 SetWallpaper(DownloadImage(URL));
@@ -62,6 +63,10 @@ namespace EarthPornWallpaper
             catch (WebException e)
             {
                 Console.WriteLine("An error occured when downloading the image\n" + e.Message);
+            }
+            catch (FormatException f)
+            {
+                Console.WriteLine("The file found was not an image");
             }
             
         }
@@ -72,14 +77,43 @@ namespace EarthPornWallpaper
         /// <returns>The path of the image</returns>
         public static string DownloadImage(string url) 
         {
-            string path = appPath + "\\Images\\DesktopTest3.jpg";
+            //get the format
+            string format = url.Substring(url.Length - 4);
+            while (!format.StartsWith("."))
+            {
+                format = format.Substring(1);
+            }
+
+            //before we downlaod, check that the file is an image so that we don't acidentally download a virus
+            if (!IsImageFormat(format))
+                throw new FormatException("The file type was not an image");
+
+            //prepare to download
+            string path = appPath + "\\Images\\DesktopTest3" + format;
             WebClient client = new WebClient();
 
+            //download the image
             client.DownloadFile(url, path);
-
             return path;
         }
 
+
+        /// <summary>
+        /// Takes the file type and determines if it is an image
+        /// </summary>
+        /// <param name="fileExtension">The filetype to analize</param>
+        /// <returns>If the given filetype is an image</returns>
+        public static bool IsImageFormat(string fileExtension)
+        {
+            fileExtension = fileExtension.ToUpper();
+            if (   fileExtension.Equals(".JPG") || fileExtension.Equals(".JPEG") || fileExtension.Equals(".JIF") || fileExtension.Equals(".JFIF")
+                || fileExtension.Equals(".TIF") || fileExtension.Equals(".TIFF")
+                || fileExtension.Equals(".GIF") || fileExtension.Equals(".PNG")
+                || fileExtension.Equals(".JP2") || fileExtension.Equals(".JPX") || fileExtension.Equals(".J2K") || fileExtension.Equals(".J2C")
+                || fileExtension.Equals(".BMP"))
+                return true;
+            return false;
+        }
 
         /***********************************************
          * Code pulled from http://tinyurl.com/q7vd47e *
