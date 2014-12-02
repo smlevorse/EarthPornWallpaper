@@ -2,29 +2,38 @@ EarthPornWallpaper
 ==================
 This is a program that will download the top rated post on reddit.com/r/earthporn and set it to your desktop backround.
 
-Progress(Updated 12/1/14):
+<h2>Progress(Updated 12/1/14):</h2>
 The program now works so that if you run it, it downloads the 5th post(I set it to that because while I was testing, posts 1-4 were not as pleasing to me) and sets it to your background. 
 
-Goals:
+<h2>Goals:</h2>
 Get it working:
-    ---Downloads a specified image from r/earthporn--
-    ---Sets that image to be the desktop background--
+<ul>
+    <li>̶D̶o̶w̶n̶l̶o̶a̶d̶s̶ ̶a̶ ̶s̶p̶e̶c̶i̶f̶i̶e̶d̶ 00̶i̶m̶a̶g̶e̶ ̶f̶r̶o̶m̶ ̶r̶/̶e̶a̶r̶t̶h̶p̶o̶r̶n̶</li>
+    <li>̶S̶e̶t̶s̶ ̶t̶h̶a̶t̶ ̶i̶m̶a̶g̶e̶ ̶t̶o̶ ̶b̶e̶ ̶t̶h̶e̶ ̶d̶e̶s̶k̶t̶o̶p̶ ̶b̶a̶c̶k̶g̶r̶o̶u̶n̶d̶</li>
+</ul>
 Check input:
-    -There are several types of posts to r/earthporn, some links head directly to the image, some link to imgur, others link
-      to flickr lightbox, etc. 
-    -potential issues with file formats
-    -rerouting to the next available picture if all else fails
-    -avoid panoramas/take into account aspect ratios
+<ul>
+    <li>There are several types of posts to r/earthporn, some links head directly to the image, some link to imgur, others link to flickr lightbox, etc. </li>
+    <li>Potential issues with file formats</li>
+    <li>Rerouting to the next available picture if all else fails</li>
+    <li>Avoid panoramas/take into account aspect ratios</li>
+</ul>
 Customizability:
-    -the ability to choose how often the background updates
-    -override the right click on the desktop's "next image" function to work with the application
+<ul>
+    <li>The ability to choose how often the background updates</li>
+    <li>Override the right click on the desktop's "next image" function to work with the application</li>
+</ul>
 Usability:
-    -how to have different pictures when you have multiple monitors
-      -maybe make multiple monitors work with panoramas
-    -user interface
-    -download more than one image for use offline
-    -be able to download the image for personal use
-    -have the program run on start as well as be always on to change the background when necessary
+<ul>
+    <li>How to have different pictures when you have multiple monitors
+      <ul><li>Maybe make multiple monitors work with panoramas</li></ul></li>
+    <li>User interface</li>
+    <li>Download more than one image for use offline</li>
+    <li>Be able to download the image for personal use</li>
+    <li>Have the program run on start as well as be always on to change the background when necessary</li>
+</ul>
 Rights:
-    -Watermark based on what reddit user uploaded the image, in a subtle, but noticible place
-    -Research usage rights for the image
+<ul>
+    <li>Watermark based on what reddit user uploaded the image, in a subtle, but noticible place</li>
+    <li>Research usage rights for the image</li>
+</ul>
