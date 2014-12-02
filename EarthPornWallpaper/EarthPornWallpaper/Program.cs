@@ -102,7 +102,10 @@ namespace EarthPornWallpaper
             string format = url.Substring(url.Length - 4);
             while (!format.StartsWith("."))
             {
-                format = format.Substring(1);
+                if (format.Length > 0)
+                    format = format.Substring(1);
+                else
+                    throw new FormatException("URL is not a file");
             }
 
             //before we downlaod, check that the file is an image so that we don't acidentally download a virus
