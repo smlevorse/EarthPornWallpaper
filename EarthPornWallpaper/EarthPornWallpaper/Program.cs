@@ -18,10 +18,15 @@ namespace EarthPornWallpaper
             string htmlLoc = appPath + "earthporn.html";
             string earthpornHtml;
             string entry;
+            string path;
+            List<string> paths = new List<string>();
             int entryLoc;
             int imageEnd;
             int imageLoc;
             string URL;
+            int picCount = 0;
+            int postCount = 1;
+            bool success;
 
             //Download the most recent Earthporn top website
             try
@@ -33,49 +38,65 @@ namespace EarthPornWallpaper
                 Console.WriteLine("An error occured when downloading r/earthporn\n" + e.Message);
             }
 
-            //read the html file
-            earthpornHtml = File.ReadAllText(htmlLoc);
-            
-            /* look for the top post
-             * it should be in a div that contains a span:
-             * <span class="rank">
-             */
-            entryLoc = earthpornHtml.IndexOf("<span class=\"rank\">1");
-            /* look for the start of the a tag that contains
-             * the link to the image:
-             * <a class="thumbnail may-blank " href="IMAGEURL
-             */
-            entryLoc = earthpornHtml.IndexOf("<a class=\"thumbnail may-blank \"", entryLoc);
-            imageEnd = earthpornHtml.IndexOf(">", entryLoc) - 2;
-            entry = earthpornHtml.Substring(entryLoc, imageEnd - entryLoc);
-            
-            //break the url out of the entry
-            imageLoc = entry.IndexOf("href") + 6;
-            URL = entry.Substring(imageLoc);
+            //in a loop, download the 5 top posts right now
+            while (picCount < 5 && postCount < 20)
+            {
+                //read the html file
+                earthpornHtml = File.ReadAllText(htmlLoc);
 
-            Console.WriteLine("Image downloaded from: " + URL);
+                /* look for the top post
+                 * it should be in a div that contains a span:
+                 * <span class="rank">
+                 */
+                entryLoc = earthpornHtml.IndexOf("<span class=\"rank\">" + postCount);
+                /* look for the start of the a tag that contains
+                 * the link to the image:
+                 * <a class="thumbnail may-blank " href="IMAGEURL
+                 */
+                entryLoc = earthpornHtml.IndexOf("<a class=\"thumbnail may-blank \"", entryLoc);
+                imageEnd = earthpornHtml.IndexOf(">", entryLoc) - 2;
+                entry = earthpornHtml.Substring(entryLoc, imageEnd - entryLoc);
 
-            //try to download
-            try
-            {
-                SetWallpaper(DownloadImage(URL));
+                //break the url out of the entry
+                imageLoc = entry.IndexOf("href") + 6;
+                URL = entry.Substring(imageLoc);
+
+                Console.WriteLine("Image downloaded from: " + URL);
+
+                //try to download
+                try
+                {
+                    path = DownloadImage(URL, postCount);
+                    paths.Add(path);
+                    success = true;
+                }
+                catch (WebException e)
+                {
+                    Console.WriteLine("An error occured when downloading the image\n" + e.Message);
+                    success = false;
+                }
+                catch (FormatException f)
+                {
+                    Console.WriteLine("The file found was not an image");
+                    success = false;
+                }
+
+                postCount++;
+                if (success)
+                    picCount++;
             }
-            catch (WebException e)
-            {
-                Console.WriteLine("An error occured when downloading the image\n" + e.Message);
-            }
-            catch (FormatException f)
-            {
-                Console.WriteLine("The file found was not an image");
-            }
-            
+
+            //set the walpaper if there is an appropriate path
+            if(!paths[1].Equals(""))
+                SetWallpaper(paths[1]);
+
         }
 
         /// <summary>
         /// Downloads the image and stores it to a file
         /// </summary>
         /// <returns>The path of the image</returns>
-        public static string DownloadImage(string url) 
+        public static string DownloadImage(string url, int post) 
         {
             //get the format
             string format = url.Substring(url.Length - 4);
@@ -89,7 +110,7 @@ namespace EarthPornWallpaper
                 throw new FormatException("The file type was not an image");
 
             //prepare to download
-            string path = appPath + "\\Images\\DesktopTest3" + format;
+            string path = appPath + "\\Images\\Desktop" + post + format;
             WebClient client = new WebClient();
 
             //download the image
