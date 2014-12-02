@@ -19,6 +19,7 @@ namespace EarthPornWallpaper
             string earthpornHtml;
             string entry;
             string path;
+            string title;
             List<string> paths = new List<string>();
             int entryLoc;
             int imageEnd;
@@ -27,6 +28,8 @@ namespace EarthPornWallpaper
             int picCount = 0;
             int postCount = 1;
             bool success;
+            int titleLoc;
+            int titleEnd;
 
             //Download the most recent Earthporn top website
             try
@@ -61,7 +64,22 @@ namespace EarthPornWallpaper
                 imageLoc = entry.IndexOf("href") + 6;
                 URL = entry.Substring(imageLoc);
 
-                Console.WriteLine("Image downloaded from: " + URL);
+                Console.WriteLine("Post {0} URL: " + URL, postCount);
+
+                /* Get the title of the post, it should be wrapped in a 
+                 * <a> tag, but as the content instead of an attribute
+                 * <a class="title may-blank href="IMAGEURL" tabindex="1">
+                 *      ::before
+                 *      "POSTTITLE"
+                 * </a>
+                 */
+
+                titleLoc = earthpornHtml.IndexOf("<a class=", imageEnd);
+                titleEnd = earthpornHtml.IndexOf("</a>", titleLoc);
+                title = earthpornHtml.Substring(titleLoc, titleEnd - titleLoc);
+                titleLoc = title.IndexOf(">") + 1;
+                title = title.Substring(titleLoc);
+                Console.WriteLine("Post {0} Title: " + title, postCount);
 
                 //try to download
                 try
