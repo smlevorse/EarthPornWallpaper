@@ -15,7 +15,7 @@ Check input:
 <ul>
     <li>There are several types of posts to r/earthporn, some links head directly to the image, some link to imgur, others link to flickr lightbox, etc. </li>
     <li>̶P̶o̶t̶e̶n̶t̶i̶a̶l̶ ̶i̶s̶s̶u̶e̶s̶ ̶w̶i̶t̶h̶ ̶f̶i̶l̶e̶ ̶f̶o̶r̶m̶a̶t̶s̶</li>
-    <li>Rerouting to the next available picture if all else fails</li>
+    <li>̶R̶e̶r̶o̶u̶t̶i̶n̶g̶ ̶t̶o̶ ̶t̶h̶e̶ ̶n̶e̶x̶t̶ ̶a̶v̶a̶i̶l̶a̶b̶l̶e̶ ̶p̶i̶c̶t̶u̶r̶e̶ ̶i̶f̶ ̶a̶l̶l̶ ̶e̶l̶s̶e̶ ̶f̶a̶i̶l̶s̶</li>
     <li>Avoid panoramas/take into account aspect ratios</li>
 </ul>
 Customizability:
@@ -28,7 +28,7 @@ Usability:
     <li>How to have different pictures when you have multiple monitors
       <ul><li>̶M̶a̶y̶b̶e̶ ̶m̶a̶k̶e̶ ̶m̶u̶l̶t̶i̶p̶l̶e̶ ̶m̶o̶n̶i̶t̶o̶r̶s̶ ̶w̶o̶r̶k̶ ̶w̶i̶t̶h̶ ̶p̶a̶n̶o̶r̶a̶m̶a̶s̶ Apparently this is automatic</li></ul></li>
     <li>User interface</li>
-    <li>Download more than one image for use offline</li>
+    <li>̶D̶o̶w̶n̶l̶o̶a̶d̶ ̶m̶o̶r̶e̶ ̶t̶h̶a̶n̶ ̶o̶n̶e̶ ̶i̶m̶a̶g̶e̶ ̶f̶o̶r̶ ̶u̶s̶e̶ ̶o̶f̶f̶l̶i̶n̶e̶</li>
     <li>Be able to download the image for personal use</li>
     <li>Have the program run on start as well as be always on to change the background when necessary</li>
 </ul>
