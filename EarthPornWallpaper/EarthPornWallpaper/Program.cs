@@ -139,7 +139,7 @@ namespace EarthPornWallpaper
                         //try to download
                         try
                         {
-                            Console.WriteLine(URL);
+                            
                             path = DownloadImage(URL, postCount);
                             paths.Enqueue(path);
                             Console.WriteLine("Downloaded post " + postCount);
@@ -172,12 +172,22 @@ namespace EarthPornWallpaper
                                     Console.WriteLine("The file found was not an image\r\n" + l.Message);
                                     success = false;
                                 }
+                                catch (Exception all)
+                                {
+                                    Console.WriteLine("Other error occurred when downloading:\r\n" + all.Message);
+                                    success = false;
+                                }
                             }
                             else
                             {
                                 Console.WriteLine("The file found was not an image");
                                 success = false;
                             }
+                        }
+                        catch (Exception all)
+                        {
+                            Console.WriteLine("Other error occurred when downloading:\r\n" + all.Message);
+                            success = false;
                         }
                     }
                     else
@@ -225,7 +235,6 @@ namespace EarthPornWallpaper
             WebClient client = new WebClient();
 
             //download the image
-            Console.WriteLine(url);
             client.DownloadFile(url, path);
             return path;
         }
