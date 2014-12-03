@@ -31,7 +31,7 @@ namespace EarthPornWallpaper
             int imageLoc;
             string URL;
             int picCount = 0;
-            int postCount = 17;
+            int postCount = 1;
             bool success;
             int titleLoc;
             int titleEnd;
@@ -58,7 +58,7 @@ namespace EarthPornWallpaper
                 }
 
                 //in a loop, download the 5 top posts right now
-                while (picCount < 5 && postCount < 24)
+                while (picCount < 12 && postCount < 24)
                 {
                     //read the html file
                     earthpornHtml = File.ReadAllText(htmlLoc);
