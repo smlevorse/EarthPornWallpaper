@@ -10,6 +10,7 @@ Get it working:
 <ul>
     <li>̶D̶o̶w̶n̶l̶o̶a̶d̶s̶ ̶a̶ ̶s̶p̶e̶c̶i̶f̶i̶e̶d̶ ̶i̶m̶a̶g̶e̶ ̶f̶r̶o̶m̶ ̶r̶/̶e̶a̶r̶t̶h̶p̶o̶r̶n̶</li>
     <li>̶S̶e̶t̶s̶ ̶t̶h̶a̶t̶ ̶i̶m̶a̶g̶e̶ ̶t̶o̶ ̶b̶e̶ ̶t̶h̶e̶ ̶d̶e̶s̶k̶t̶o̶p̶ ̶b̶a̶c̶k̶g̶r̶o̶u̶n̶d̶</li>
+    <li>̶H̶a̶v̶e̶ ̶t̶h̶e̶̶ ̶p̶r̶o̶g̶r̶a̶m̶ ̶c̶h̶a̶n̶g̶e̶ ̶t̶h̶e̶ ̶b̶a̶c̶k̶g̶r̶o̶u̶n̶d̶ ̶o̶n̶ ̶a̶ ̶t̶i̶m̶e̶ ̶i̶n̶t̶e̶r̶v̶a̶l̶</li>
 </ul>
 Check input:
 <ul>
