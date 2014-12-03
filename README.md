@@ -36,5 +36,21 @@ Usability:
 Rights:
 <ul>
     <li>Watermark based on what reddit user uploaded the image, in a subtle, but noticible place</li>
-    <li>Research usage rights for the image</li>
+    <li>Research usage rights for the image (see below)</li>
 </ul>
+
+<h2>Image Usage Rights</h2>
+Each post on r/earthporn can be hosted in a variety of locations and have different usage rights. Below is a summary of the policies of common r/earthporn hosting locations and what I was ablt to find in terms of usage rights  
+
+Flickr:
+<a href="https://www.flickr.com/help/photos/#2265887">Scroll down</a>
+Some authors may choose to disable downloading. These photos will not be linked directly to the file on reddit, and instead will link to the page the photo is hosted on. The ones that can be downloaded will most likely be posted directly to the subreddit instead of a link the page.
+
+Imgur:
+<a href="http://imgur.com/tos">Scroll down to "The Details"</a>
+You can download any file that is made public on Imgur as long as it is used for personal, non commercial purposes. This is not commercial so we are good to go. 
+
+**NEED TO FIND WORKAROUND FOR GALLERY POSTS**
+
+Others:
+The majority of the posts to r/earthporn are hosted on Flickr and Imgur. Those hosted elsewehere seem to not reach peek popularity enough for me to even find posts hosted elsewehere that will not download. If there is one that will not download, the loss of that one image will not affect the purpose of this project. If a user really wants that photo, they can download it themselves. 
