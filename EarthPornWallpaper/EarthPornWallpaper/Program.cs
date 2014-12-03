@@ -31,7 +31,7 @@ namespace EarthPornWallpaper
             int imageLoc;
             string URL;
             int picCount = 0;
-            int postCount = 1;
+            int postCount = 17;
             bool success;
             int titleLoc;
             int titleEnd;
@@ -58,7 +58,7 @@ namespace EarthPornWallpaper
                 }
 
                 //in a loop, download the 5 top posts right now
-                while (picCount < 12 && postCount < 24)
+                while (picCount < 5 && postCount < 24)
                 {
                     //read the html file
                     earthpornHtml = File.ReadAllText(htmlLoc);
@@ -139,6 +139,7 @@ namespace EarthPornWallpaper
                         //try to download
                         try
                         {
+                            Console.WriteLine(URL);
                             path = DownloadImage(URL, postCount);
                             paths.Enqueue(path);
                             Console.WriteLine("Downloaded post " + postCount);
@@ -151,8 +152,32 @@ namespace EarthPornWallpaper
                         }
                         catch (FormatException f)
                         {
-                            Console.WriteLine("The file found was not an image");
-                            success = false;
+                            if (f.Message.Equals("URL is not a file") && URL.ToUpper().Contains("IMGUR"))
+                            {
+                                try
+                                {
+                                    path = ImgurWorkAround(URL, postCount);
+                                    paths.Enqueue(path);
+                                    Console.WriteLine("Used Imgur Workaround: " + URL);
+                                    success = true;
+                                }
+                                catch (WebException g)
+                                {
+                                    Console.WriteLine("An error occured when downloading the image\n" + g.Message);
+                                    Console.WriteLine(g.Response);
+                                    success = false;
+                                }
+                                catch (FormatException l)
+                                {
+                                    Console.WriteLine("The file found was not an image\r\n" + l.Message);
+                                    success = false;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("The file found was not an image");
+                                success = false;
+                            }
                         }
                     }
                     else
@@ -200,10 +225,53 @@ namespace EarthPornWallpaper
             WebClient client = new WebClient();
 
             //download the image
+            Console.WriteLine(url);
             client.DownloadFile(url, path);
             return path;
         }
 
+        /// <summary>
+        /// Takes a URL for an image hosted on Imgur and downloads it
+        /// </summary>
+        /// <param name="url">The URL on Imgur</param>
+        /// <param name="post">The post number</param>
+        /// <returns>The path to where the image is saved</returns>
+        public static string ImgurWorkAround(string url, int post) 
+        {
+            WebClient client = new WebClient();
+            string htmlLoc = appPath + "Imgur.html";
+            string imgurHtml;
+            int entryLoc;
+            int imageEnd;
+            int imageLoc;
+            string URL;
+
+            //download the file
+            try
+            {
+                client.DownloadFile(url, htmlLoc);
+            }
+            catch (WebException e)
+            {
+                Console.WriteLine("An error occured when downloading Imgur\n" + e.Message);
+            }
+
+            //read the html file
+            imgurHtml = File.ReadAllText(htmlLoc);
+
+            /* Look for the location of the image. It should be in a div
+             * of class "image textbox"
+             * <div class="image textbox">
+             *      <a href="//IMAGEURL">
+             */
+            entryLoc = imgurHtml.IndexOf("<div class=\"image textbox\">") + 30;
+            imageEnd = imgurHtml.IndexOf(">", entryLoc) - 14;
+            imageLoc = imgurHtml.IndexOf("//", entryLoc) + 2;
+            URL = "http://" + imgurHtml.Substring(imageLoc, imageEnd - imageLoc);
+
+            
+            return DownloadImage(URL, post);
+        }
 
         /// <summary>
         /// Takes the file type and determines if it is an image
