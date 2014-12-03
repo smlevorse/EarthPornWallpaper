@@ -16,7 +16,7 @@ Check input:
     <li>There are several types of posts to r/earthporn, some links head directly to the image, some link to imgur, others link to flickr lightbox, etc. </li>
     <li>̶P̶o̶t̶e̶n̶t̶i̶a̶l̶ ̶i̶s̶s̶u̶e̶s̶ ̶w̶i̶t̶h̶ ̶f̶i̶l̶e̶ ̶f̶o̶r̶m̶a̶t̶s̶</li>
     <li>̶R̶e̶r̶o̶u̶t̶i̶n̶g̶ ̶t̶o̶ ̶t̶h̶e̶ ̶n̶e̶x̶t̶ ̶a̶v̶a̶i̶l̶a̶b̶l̶e̶ ̶p̶i̶c̶t̶u̶r̶e̶ ̶i̶f̶ ̶a̶l̶l̶ ̶e̶l̶s̶e̶ ̶f̶a̶i̶l̶s̶</li>
-    <li>Avoid panoramas/take into account aspect ratios</li>
+    <li>̶A̶v̶o̶i̶d̶ ̶p̶a̶n̶o̶r̶a̶m̶a̶s̶/̶t̶a̶k̶e̶ ̶i̶n̶t̶o̶ ̶a̶c̶c̶o̶u̶n̶t̶ ̶a̶s̶p̶e̶c̶t̶ ̶r̶a̶t̶i̶o̶s̶</li>
 </ul>
 Customizability:
 <ul>
