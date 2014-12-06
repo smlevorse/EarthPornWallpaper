@@ -28,6 +28,7 @@ namespace EarthPornWallpaper
             ContextMenuStrip menu = new ContextMenuStrip();
             ToolStripMenuItem download = new ToolStripMenuItem("Download Currect Background");
             ToolStripMenuItem next = new ToolStripMenuItem("Next Background");
+            ToolStripMenuItem about = new ToolStripMenuItem("");
 
             //hook up methods to events
             download.Click += (sender, args) => DownloadBackground();
