@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 using System.Net;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
+using SharpShell;
 
 namespace EarthPornWallpaper
 {
@@ -15,6 +17,15 @@ namespace EarthPornWallpaper
         public const string appPath = "C:\\Users\\Sean\\git\\EarthPornWallpaper\\EarthPornWallpaper\\EarthPornWallpaper";
         static void Main(string[] args)
         {
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Settings());
+
+            Settings ui = new Settings();
+            ApplicationContext applicationContext = new ApplicationContext();
+            applicationContext.MainForm = ui;
+            Application.Run(applicationContext);
+
             //constants
             const int minutes = 30;
             string subreddit = "http://www.reddit.com/r/earthporn/top/?sort=top&t=day";
@@ -203,8 +214,11 @@ namespace EarthPornWallpaper
                 {
                     //set the walpaper if there is an appropriate path
                     if (!paths.Peek().Equals(""))
+                    {
                         SetWallpaper(paths.Dequeue());
-                    Thread.Sleep(60000 * minutes);
+                        Console.WriteLine("Sleeping");
+                        Thread.Sleep(60000 * minutes);
+                    }
                 }
             }
 
