@@ -15,7 +15,8 @@ namespace EarthPornWallpaper
     {
         //fields
         private static string subreddit;
-        private static Queue<string> paths;
+        private static Queue<string[]> posts;   //{path, title, user, URL, aspectRatio}
+        private static string url;
 
         public Settings()
         {
@@ -25,7 +26,7 @@ namespace EarthPornWallpaper
         private void Settings_Load(object sender, EventArgs e)
         {
             subreddit = "http://www.reddit.com/r/earthporn/top/?sort=top&t=day";
-            paths = new Queue<string>();
+            posts = new Queue<string[]>();
         }
 
         //hide the form instead of closing it
@@ -105,16 +106,21 @@ namespace EarthPornWallpaper
         private void butNext_Click(object sender, EventArgs e)
         {
             //if there are no more images to draw from, download the top posts again
-            if (paths.Count <= 0)
+            if (posts.Count <= 0)
             {
                 DownloadTopPosts();
             }
 
             //set the walpaper if there is an appropriate path
-            if (!paths.Peek().Equals(""))
+            if (posts.Peek().Length == 5)
             {
-                SetWallpaper(paths.Dequeue());
-                Console.WriteLine("Sleeping");
+                string[] data = posts.Dequeue();    //{path, title, user, URL, aspectRatio}
+                SetWallpaper(data[0]);
+                picBoxCurrent.ImageLocation = data[0];
+                lblTitle.Text = "Title: " + data[1];
+                lblUser.Text = "User: " + data[2];
+                url = data[3];
+                lblAspectRatio.Text = "Aspect Ratio: " + data[4];
             }
             
         }
@@ -150,6 +156,12 @@ namespace EarthPornWallpaper
             int x;              //the location of the X in the aspect ratio
             bool foundRatio;
             double h, w;
+            int authorLoc;
+            int authorEnd;
+            string author;
+            int commentLoc;
+            int commentEnd;
+            string commentURL;
             
             //Download the most recent Earthporn top website
             try
@@ -161,7 +173,8 @@ namespace EarthPornWallpaper
                 Console.WriteLine("An error occured when downloading r/earthporn\n" + e.Message);
             }
 
-            //in a loop, download the 5 top posts right now
+
+            //in a loop, download the 12 top posts right now
             while (picCount < 12 && postCount < 24)
             {
                 //read the html file
@@ -200,6 +213,26 @@ namespace EarthPornWallpaper
                 titleLoc = title.IndexOf(">") + 1;
                 title = title.Substring(titleLoc);
                 Console.WriteLine("Post {0} Title: " + title, postCount);
+                
+                /* Get the user who submitted the post. It should be wrapped in
+                 * an <a> tag, but after the string " by ":
+                 * " by "
+                 * <a href="Uhttp://www.retti.com/user/USERNAME"
+                 */
+                authorLoc = earthpornHtml.IndexOf(" by ", titleEnd);
+                authorLoc = earthpornHtml.IndexOf("http://www.reddit.com/user/", authorLoc) + 27;
+                authorEnd = earthpornHtml.IndexOf("\"", authorLoc);
+                author = earthpornHtml.Substring(authorLoc, authorEnd - authorLoc);
+
+                /* Get the url to the comments page. It should be wrapped in an <a>
+                 * tag nested in the "flat-list buttons" ul as part of the "first" <li>
+                 * <li class="first">
+                 *      <a href="COMMENTURL">
+                 */
+                commentLoc = earthpornHtml.IndexOf("<li class=\"first\">", titleEnd);
+                commentLoc = earthpornHtml.IndexOf("href=", commentLoc) + 6;
+                commentEnd = earthpornHtml.IndexOf("\"", commentLoc);
+                commentURL = earthpornHtml.Substring(commentLoc, commentEnd - commentLoc);
 
                 //Check for aspect ratio between 1.25 and 1.85
                 //1.25 is the earliest TV screens, 1.85 is the cinema standard
@@ -245,7 +278,8 @@ namespace EarthPornWallpaper
                     {
                             
                         path = DownloadImage(URL, postCount);
-                        paths.Enqueue(path);
+                        string[] data = { path, title, author, commentURL, aspectRatio };
+                        posts.Enqueue(data);
                         Console.WriteLine("Downloaded post " + postCount);
                         success = true;
                     }
@@ -261,7 +295,8 @@ namespace EarthPornWallpaper
                             try
                             {
                                 path = ImgurWorkAround(URL, postCount);
-                                paths.Enqueue(path);
+                                string[] data = { path, title, author, commentURL, aspectRatio };
+                                posts.Enqueue(data);
                                 Console.WriteLine("Used Imgur Workaround: " + URL);
                                 success = true;
                             }
@@ -411,6 +446,13 @@ namespace EarthPornWallpaper
         {
             SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, path,
                 SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+        }
+
+
+        private void linkPostURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkPostURL.LinkVisited = true;
+            System.Diagnostics.Process.Start(url);
         }
 
         /***********************************************
