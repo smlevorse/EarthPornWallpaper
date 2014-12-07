@@ -2,7 +2,7 @@ EarthPornWallpaper
 ==================
 This is a program that will download the top rated post on reddit.com/r/earthporn and set it to your desktop backround.
 
-<h2>Progress(Updated 12/3/14):</h2>
+<h2>Progress(Updated 12/6/14):</h2>
 The program now works so that if you run it, it downloads the 5th post(I set it to that because while I was testing, posts 1-4 were not as pleasing to me) and sets it to your background. 
 
 <h2>Goals:</h2>
@@ -21,21 +21,22 @@ Check input:Done(12/3/14)
 </ul>
 Customizability:
 <ul>
-    <li>The ability to choose how often the background updates</li>
+    <li>̶T̶h̶e̶ ̶a̶b̶i̶l̶i̶t̶y̶ ̶t̶o̶ ̶c̶h̶o̶o̶s̶e̶ ̶h̶o̶w̶ ̶o̶f̶t̶e̶n̶ ̶t̶h̶e̶ ̶b̶a̶c̶k̶g̶r̶o̶u̶n̶d̶ ̶u̶p̶d̶a̶t̶e̶s̶</li>
     <li>Override the right click on the desktop's "next image" function to work with the application</li>
 </ul>
 Usability:
 <ul>
     <li>How to have different pictures when you have multiple monitors
       <ul><li>̶M̶a̶y̶b̶e̶ ̶m̶a̶k̶e̶ ̶m̶u̶l̶t̶i̶p̶l̶e̶ ̶m̶o̶n̶i̶t̶o̶r̶s̶ ̶w̶o̶r̶k̶ ̶w̶i̶t̶h̶ ̶p̶a̶n̶o̶r̶a̶m̶a̶s̶ Apparently this is automatic</li></ul></li>
-    <li>User interface</li>
+    <li>̶U̶s̶e̶r̶ ̶i̶n̶t̶e̶r̶f̶a̶c̶e̶</li>
     <li>̶D̶o̶w̶n̶l̶o̶a̶d̶ ̶m̶o̶r̶e̶ ̶t̶h̶a̶n̶ ̶o̶n̶e̶ ̶i̶m̶a̶g̶e̶ ̶f̶o̶r̶ ̶u̶s̶e̶ ̶o̶f̶f̶l̶i̶n̶e̶</li>
     <li>Be able to download the image for personal use</li>
+    <li>̶B̶e̶ ̶a̶b̶l̶e̶ ̶t̶o̶ ̶s̶k̶i̶p̶ ̶t̶o̶ ̶t̶h̶e̶ ̶n̶e̶x̶t̶ ̶i̶m̶a̶g̶e̶</li>
     <li>Have the program run on start as well as be always on to change the background when necessary</li>
 </ul>
 Rights:
 <ul>
-    <li>Watermark based on what reddit user uploaded the image, in a subtle, but noticible place</li>
+    <li>Watermark based on what reddit user uploaded the image, in a subtle, but noticible place?</li>
     <li>Research usage rights for the image (see below)</li>
 </ul>
 
