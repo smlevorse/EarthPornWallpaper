@@ -14,11 +14,14 @@ namespace EarthPornWallpaper
 {
     class Program
     {
+        
         public static string appPath = "C:\\Users\\Sean\\git\\EarthPornWallpaper\\EarthPornWallpaper\\EarthPornWallpaper";
+
+        [STAThread]
         static void Main(string[] args)
         {
             //get appPath
-           // appPath = AppDomain.CurrentDomain.BaseDirectory;
+            //appPath = AppDomain.CurrentDomain.BaseDirectory;
             //Console.Write(appPath);
 
             //Application.EnableVisualStyles();

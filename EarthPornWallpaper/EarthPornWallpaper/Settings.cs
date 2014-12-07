@@ -15,8 +15,9 @@ namespace EarthPornWallpaper
     {
         //fields
         private static string subreddit;
-        private static Queue<string[]> posts;   //{path, title, user, URL, aspectRatio}
+        private static Queue<string[]> posts;   //{path, title, user, URL, aspectRatio, imageURL}
         private static string url;
+        private static string imageURL;
 
         public Settings()
         {
@@ -112,22 +113,43 @@ namespace EarthPornWallpaper
             }
 
             //set the walpaper if there is an appropriate path
-            if (posts.Peek().Length == 5)
+            if (posts.Peek().Length == 6)
             {
-                string[] data = posts.Dequeue();    //{path, title, user, URL, aspectRatio}
+                string[] data = posts.Dequeue();    //{path, title, user, URL, aspectRatio, imageURL}
                 SetWallpaper(data[0]);
                 picBoxCurrent.ImageLocation = data[0];
                 lblTitle.Text = "Title: " + data[1];
                 lblUser.Text = "User: " + data[2];
                 url = data[3];
                 lblAspectRatio.Text = "Aspect Ratio: " + data[4];
+                imageURL = data[5];
             }
             
         }
 
+
         private void butDownload_Click(object sender, EventArgs e)
         {
-
+            
+            //Open folder dialogue to allow the user to select where they want to save the image:
+            string format = GetFormat(imageURL);
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.DefaultExt = format;
+            saveFileDialog.OverwritePrompt = true;
+            DialogResult result = saveFileDialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                try
+                {
+                    DownloadImage(imageURL, saveFileDialog.FileName);
+                }
+                catch (WebException web)
+                { 
+                    Console.WriteLine("Web Exception: " + web.Message);
+                    Console.WriteLine("URL: " + imageURL);
+                    Console.WriteLine("Path: " + saveFileDialog.FileName);
+                }
+            }
         }
 
         public static void DownloadTopPosts()
@@ -278,7 +300,7 @@ namespace EarthPornWallpaper
                     {
                             
                         path = DownloadImage(URL, postCount);
-                        string[] data = { path, title, author, commentURL, aspectRatio };
+                        string[] data = { path, title, author, commentURL, aspectRatio, URL};
                         posts.Enqueue(data);
                         Console.WriteLine("Downloaded post " + postCount);
                         success = true;
@@ -295,7 +317,7 @@ namespace EarthPornWallpaper
                             try
                             {
                                 path = ImgurWorkAround(URL, postCount);
-                                string[] data = { path, title, author, commentURL, aspectRatio };
+                                string[] data = { path, title, author, commentURL, aspectRatio, URL };
                                 posts.Enqueue(data);
                                 Console.WriteLine("Used Imgur Workaround: " + URL);
                                 success = true;
@@ -339,8 +361,6 @@ namespace EarthPornWallpaper
             }
         }
 
-
-
         /// <summary>
         /// Downloads the image and stores it to a file
         /// </summary>
@@ -348,14 +368,7 @@ namespace EarthPornWallpaper
         public static string DownloadImage(string url, int post)
         {
             //get the format
-            string format = url.Substring(url.Length - 4);
-            while (!format.StartsWith("."))
-            {
-                if (format.Length > 0)
-                    format = format.Substring(1);
-                else
-                    throw new FormatException("URL is not a file");
-            }
+            string format = GetFormat(url);
 
             //before we downlaod, check that the file is an image so that we don't acidentally download a virus
             if (!IsImageFormat(format))
@@ -370,6 +383,37 @@ namespace EarthPornWallpaper
             return path;
         }
 
+        public static string GetFormat(string file)
+        {
+            //get the format
+            string format = file.Substring(file.Length - 4);
+            while (!format.StartsWith("."))
+            {
+                if (format.Length > 0)
+                    format = format.Substring(1);
+                else
+                    throw new FormatException("URL is not a file");
+            }
+
+            return format;
+        }
+        
+        public static string DownloadImage(string url, string path)
+        {
+            //get the format
+            string format = GetFormat(url);
+
+            //before we downlaod, check that the file is an image so that we don't acidentally download a virus
+            if (!IsImageFormat(format))
+                throw new FormatException("The file type was not an image");
+
+            //prepare to download
+            WebClient client = new WebClient();
+
+            //download the image
+            client.DownloadFile(url, path);
+            return path;
+        }
         /// <summary>
         /// Takes a URL for an image hosted on Imgur and downloads it
         /// </summary>
