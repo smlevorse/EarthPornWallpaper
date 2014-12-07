@@ -30,7 +30,7 @@ Usability:
       <ul><li>̶M̶a̶y̶b̶e̶ ̶m̶a̶k̶e̶ ̶m̶u̶l̶t̶i̶p̶l̶e̶ ̶m̶o̶n̶i̶t̶o̶r̶s̶ ̶w̶o̶r̶k̶ ̶w̶i̶t̶h̶ ̶p̶a̶n̶o̶r̶a̶m̶a̶s̶ Apparently this is automatic</li></ul></li>
     <li>̶U̶s̶e̶r̶ ̶i̶n̶t̶e̶r̶f̶a̶c̶e̶</li>
     <li>̶D̶o̶w̶n̶l̶o̶a̶d̶ ̶m̶o̶r̶e̶ ̶t̶h̶a̶n̶ ̶o̶n̶e̶ ̶i̶m̶a̶g̶e̶ ̶f̶o̶r̶ ̶u̶s̶e̶ ̶o̶f̶f̶l̶i̶n̶e̶</li>
-    <li>Be able to download the image for personal use</li>
+    <li>̶B̶e̶ ̶a̶b̶l̶e̶ ̶t̶o̶ ̶d̶o̶w̶n̶l̶o̶a̶d̶̶ ̶t̶h̶e̶ ̶i̶m̶a̶g̶e̶ ̶f̶o̶r̶ ̶p̶e̶r̶s̶o̶n̶a̶l̶ ̶u̶s̶e̶</li>
     <li>̶B̶e̶ ̶a̶b̶l̶e̶ ̶t̶o̶ ̶s̶k̶i̶p̶ ̶t̶o̶ ̶t̶h̶e̶ ̶n̶e̶x̶t̶ ̶i̶m̶a̶g̶e̶</li>
     <li>Have the program run on start as well as be always on to change the background when necessary</li>
 </ul>
