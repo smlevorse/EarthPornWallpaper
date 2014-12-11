@@ -8,6 +8,7 @@ using System.Net;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace EarthPornWallpaper
 {
@@ -28,6 +29,10 @@ namespace EarthPornWallpaper
         {
             subreddit = "http://www.reddit.com/r/earthporn/top/?sort=top&t=day";
             posts = new Queue<string[]>();
+            butNext_Click(sender, e);
+            RightClickMenu rcm = new RightClickMenu();
+            
+            this.Hide();
         }
 
         //hide the form instead of closing it
@@ -184,6 +189,7 @@ namespace EarthPornWallpaper
             int commentLoc;
             int commentEnd;
             string commentURL;
+            int numScreens = Screen.AllScreens.Length;  //If there are multiple screen, it will download panoramas and use them. 
             
             //Download the most recent Earthporn top website
             try
@@ -234,7 +240,7 @@ namespace EarthPornWallpaper
                 title = earthpornHtml.Substring(titleLoc, titleEnd - titleLoc);
                 titleLoc = title.IndexOf(">") + 1;
                 title = title.Substring(titleLoc);
-                Console.WriteLine("Post {0} Title: " + title, postCount);
+                Console.WriteLine("Post " + postCount + " Title: " + title);
                 
                 /* Get the user who submitted the post. It should be wrapped in
                  * an <a> tag, but after the string " by ":
@@ -293,7 +299,7 @@ namespace EarthPornWallpaper
                     }
                 }
 
-                if (ratio >= 1.25 && ratio <= 1.85)
+                if (ratio >= 1.25 && ratio <= 1.85 * numScreens * numScreens)   //numScreens^2 because panoramas can often be 4:1 ratios or more. 
                 {
                     //try to download
                     try
@@ -361,6 +367,31 @@ namespace EarthPornWallpaper
             }
         }
 
+        private void linkPostURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkPostURL.LinkVisited = true;
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void chkStartUp_CheckedChanged(object sender, EventArgs e)
+        {
+            SetStartup();
+        }
+
+        private void chkRunning_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkRunning.Checked)
+            {
+                timer.Enabled = true;
+                chkRunning.Text = "Stop";
+            }
+            else
+            {
+                timer.Enabled = false;
+                chkRunning.Text = "Continue";
+            }
+        }
+
         /// <summary>
         /// Downloads the image and stores it to a file
         /// </summary>
@@ -397,7 +428,7 @@ namespace EarthPornWallpaper
 
             return format;
         }
-        
+
         public static string DownloadImage(string url, string path)
         {
             //get the format
@@ -474,6 +505,20 @@ namespace EarthPornWallpaper
             return false;
         }
 
+        /// <summary>
+        /// Sets the application to run on start or not run on startup
+        /// </summary>
+        private void SetStartup()
+        {
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (chkStartUp.Checked)
+                rk.SetValue("EarthPornDesktopBackground", Application.ExecutablePath.ToString());
+            else
+                rk.DeleteValue("EarthPornDesktopBackground",false);            
+
+        }
+
         /***********************************************
          * Code pulled from http://tinyurl.com/q7vd47e *
          ***********************************************/
@@ -491,14 +536,7 @@ namespace EarthPornWallpaper
             SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, path,
                 SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
         }
-
-
-        private void linkPostURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            linkPostURL.LinkVisited = true;
-            System.Diagnostics.Process.Start(url);
-        }
-
+        
         /***********************************************
          *               End Copied Code               *
          ***********************************************/

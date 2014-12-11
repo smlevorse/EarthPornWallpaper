@@ -46,7 +46,7 @@ namespace EarthPornWallpaper
         /// </summary>
         public void DownloadBackground()
         {
- 
+            
         }
 
         /// <summary>
