@@ -30,7 +30,6 @@ namespace EarthPornWallpaper
             subreddit = "http://www.reddit.com/r/earthporn/top/?sort=top&t=day";
             posts = new Queue<string[]>();
             butNext_Click(sender, e);
-            RightClickMenu rcm = new RightClickMenu();
             
             this.Hide();
         }
@@ -118,7 +117,7 @@ namespace EarthPornWallpaper
             }
 
             //set the walpaper if there is an appropriate path
-            if (posts.Peek().Length == 6)
+            if (posts.Count > 0 && posts.Peek().Length == 6)
             {
                 string[] data = posts.Dequeue();    //{path, title, user, URL, aspectRatio, imageURL}
                 SetWallpaper(data[0]);
